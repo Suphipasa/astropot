@@ -1,28 +1,23 @@
-// src/types.ts
-
 export interface City {
-    id: string;
-    name: string;
-    lat: number;
-    lng: number;
-  }
-  
-  export interface NatalChart {
-    sunSign: string;    // Güneş Burcu (Öz Benlik)
-    moonSign: string;   // Ay Burcu (Duygular)
-    risingSign: string; // Yükselen (Dış Görünüş)
-    // İleride buraya Mars, Venüs vb. eklenebilir
-  }
-  
-  export interface UserProfile {
-    name: string;
-    gender: string;
-    birthDate: string; // ISO String (Örn: "2000-01-01T00:00:00.000Z")
-    birthTime: string; // "07:00" formatında
-    birthCity: City;   // Seçilen şehir ve koordinatları
-    
-    job: string;          // Öğrenci, Memur vb.
-    relationship: string; // Bekar, Platonik vb.
-    
-    chart?: NatalChart;   // Hesaplandıktan sonra eklenecek
-  }
+  name: string;
+  lat: number;
+  lng: number;
+}
+
+export interface NatalChart {
+  sunSign: string;
+  moonSign: string;
+  risingSign: string;
+}
+
+export interface UserProfile {
+  id: string; // 👈 EKLENEN SATIR: Artık ID kabul edilecek
+  name: string;
+  birthDate: string; // String olarak güncelledik (YYYY-MM-DD)
+  birthTime: string;
+  birthCity: City;
+  gender: 'Erkek' | 'Kadın' | 'Diğer';
+  job: string;
+  relationship: string;
+  chart?: NatalChart; // Harita sonradan hesaplanıp eklenebilir
+}

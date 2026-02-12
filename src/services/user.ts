@@ -28,12 +28,14 @@ export const UserService = {
   },
 
   // Profili Temizle (Çıkış)
-  clearProfile: async () => {
+  clearProfile: async (): Promise<void> => {
     try {
-      await AsyncStorage.removeItem(PROFILE_KEY);
-      return true;
-    } catch (e) {
-      return false;
+      // Tüm anahtarları siliyoruz (Günlük yorum önbelleği dahil)
+      const keys = [PROFILE_KEY, 'DAILY_HOROSCOPE_DATE', 'DAILY_HOROSCOPE_DATA'];
+      await AsyncStorage.multiRemove(keys);
+      console.log("🧹 Tüm veriler temizlendi.");
+    } catch (error) {
+      console.error("Silme hatası:", error);
     }
   }
 };
